@@ -24,7 +24,7 @@ npm run build
 npm install
 ```
 3. Set up the ``.env`` file for server, following the example in the ``.env.example`` file. You may use ``3001`` as the server port if you wish. 
-4. Start the app in ``http://localhost:3001``. The CLI below will run ``tsc`` which compiles TypeScript into JavaScript and uses nodemon to run ``index.ts`` file.
+4. Start the server in ``http://localhost:3001`` by running the command below. The CLI below will run ``tsc`` which compiles TypeScript into JavaScript and uses nodemon to run ``index.ts`` file.
 ```
 npm run start
 ```
