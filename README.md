@@ -8,9 +8,13 @@
 npm install
 ```
 3. Set up the ``.env`` file for client, following the example in the ``.env.example`` file. You may use ``http://localhost:3001`` for the API endpoint in local environment.
-4. Start the app in ``http://localhost:3000``
+4. Start the client app in ``http://localhost:3000`` in development environment
 ```
 npm run start
+```
+5. Build app in production mode
+```
+npm run build
 ```
 
 ### Server
