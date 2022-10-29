@@ -11,6 +11,7 @@
 * Server app is built using *Typescript* with *Express*
 * An API endpoint (``/user/create``) is created for posting data to the server
 * **Client input validation** is performed in the *Controller* function, which ensures that the input values are valid before sending them to the database. Sequelize also validates input values before accepting them
+  * Email duplication check is also added - to prevent the same user from registering multiple times
 
 ## HOW TO START THE APP
 ### Client
