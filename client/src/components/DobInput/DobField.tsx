@@ -28,6 +28,8 @@ export const DobField = ({label, width, required, dobFormFields}:DobInputProps) 
                     onChange={(e) => setDay(e.target.value)}
                     type={"number"}
                     placeholder="DD"
+                    max={31}
+                    min={1}
                 />
                 <DobFieldInput 
                     width={width} 
@@ -36,6 +38,8 @@ export const DobField = ({label, width, required, dobFormFields}:DobInputProps) 
                     onChange={(e) => setMonth(e.target.value)}
                     type={"number"}
                     placeholder="MM"
+                    max={12}
+                    min={1}
                 />
                 <DobFieldInput 
                     width={width} 
@@ -44,6 +48,8 @@ export const DobField = ({label, width, required, dobFormFields}:DobInputProps) 
                     onChange={(e) => setYear(e.target.value)}
                     type={"number"}
                     placeholder="YYYY"
+                    max={new Date().getFullYear()}
+                    min={1900}
                 />
             </Flex>
         </DobFieldLabel>

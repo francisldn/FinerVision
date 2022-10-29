@@ -31,8 +31,20 @@ export const createUser = async (req: Request, res: Response) => {
         if(!validateFullDob(new Date(dateOfBirth))){
             throw new Error('Invalid date of birth');
         }
+        const checkUser = await User.findAll({
+            where:{
+                email
+            }
+        })
+        // check if user has registered (by the same email address)
+        if(Object.keys(checkUser).length > 0) throw new Error('User has already registered');
+        
         const record = await User.create({ ...req.body, dateOfBirth: new Date(dateOfBirth) });
-        res.send({ error: null, data: record });
+        if(Object.keys(record).length>0) {
+            res.send({ error: null, data: 'User successfully created' });
+        } else {
+            throw new Error('Something went wrong.')
+        }
     } catch (e) {
         if (e instanceof Error) {
             res.status(400).send({ error: e.message, data: null });

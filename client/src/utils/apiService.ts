@@ -11,7 +11,6 @@ interface IUserDetails {
 }
 
 export const createUser = async (userDetails:IUserDetails) => {
-    console.log(BASE_URL)
     try{
         const response = await fetch(`${BASE_URL}/user/create`,{
             method: 'POST',
@@ -20,8 +19,12 @@ export const createUser = async (userDetails:IUserDetails) => {
             },
             body: JSON.stringify(userDetails)
         })
-        return await response.json();
+        const json = await response.json();
+        if(!json.data) throw new Error(json.error)
+        return json.data;
     } catch (error) {
-        console.log(error)
+        if(error instanceof Error) {
+            throw new Error(error.message)
+        }
     }
 }

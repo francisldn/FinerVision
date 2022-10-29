@@ -82,11 +82,13 @@ export default function BottomSection({toggle, setToggleCurrent, setToggleNext, 
             comment:comment as string
         })
         toast.success('User created successfully')
-        resetForm();
+        resetForm()
     } catch(error) {
-        toast.error('Something went wrong. Please try again.');
-        console.log(error);
-    }
+        if(error instanceof Error){
+            toast.error(error.message);
+            console.log(error);
+        }
+    } 
   }
 
   const openForm = () => {
