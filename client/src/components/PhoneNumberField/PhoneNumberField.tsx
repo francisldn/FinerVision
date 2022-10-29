@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormFieldLabel, FormFieldInput } from './PhoneNumberField.styles';
+import { FormFieldLabel, FormFieldInput } from '../FormField/FormField.styles';
 
 interface FormFieldProps {
     label:string;

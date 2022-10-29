@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { TextArea } from './CommentField.styles';
 
-interface DobInputProps {
+interface CommentFieldProps {
     width: string;
     required: boolean;
     value:string;
     setValue:React.Dispatch<React.SetStateAction<string>>,
 }
 
-export const CommentField = ({width, required, value, setValue}:DobInputProps) => {
+export const CommentField = ({width, required, value, setValue}:CommentFieldProps) => {
 
     return (
             <TextArea 

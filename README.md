@@ -1,15 +1,16 @@
 # FINERVISION TEST
 
 ## CLIENT
-* Client app is built using TypeScript React and React hooks, UI is rendered with Styled Components
+* Client app is built using *TypeScript React* and *React hooks*, UI is rendered with *Styled Components*
 * User can click the header to expand the form or navigate to the next form section by clicking "Next"
-* Form validation is conducted for the section when the user clicks "Next" to navigate to the next section. If form inputs are not valid, user will be prompted to change the inputs
+* **Form validation** is conducted for the section when the user clicks "Next" to navigate to the next section. If form inputs are not valid, user will be prompted to change the inputs
   * Full form validation is also conducted in the bottom section when the user clicks "Next", this ensures that all the input values are valid before sending the data to the server
+  * All the fields, except for the Final comments, are marked as **required** fields. User who does not input a valid value will not be able to proceed
 * The UI is developed to be responsive, so the Form and its elements will expand or shrink accordingly based on screen sizes
 ## SERVER
-* Server app is built using Typescript with Express
-* An API endpoint is created for posting data to the server
-* Client input validation is performed in the Controller function, which ensures that the input values are valid before sending them to the database. Sequelize also validates input values before accepting them
+* Server app is built using *Typescript* with *Express*
+* An API endpoint (``/user/create``) is created for posting data to the server
+* **Client input validation** is performed in the *Controller* function, which ensures that the input values are valid before sending them to the database. Sequelize also validates input values before accepting them
 
 ## HOW TO START THE APP
 ### Client

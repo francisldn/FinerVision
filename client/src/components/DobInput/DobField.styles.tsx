@@ -1,19 +1,12 @@
 import styled from 'styled-components';
+import { FormFieldLabel } from '../FormField/FormField.styles';
 
 export const Flex = styled.div`
     display:flex;
 `
 
-export const DobFieldLabel = styled.label`
-    display:flex;
-    flex-direction:column;
-    font-weight: 800;
-    font-size: 16px;
-    margin-left: 15px;
-    margin-top:10px;
-    color: #2a2a2a;
-    width: 100%;
-`
+export const DobFieldLabel = FormFieldLabel
+
 export const DobFieldInput = styled.input`
     box-shadow: inset 2px 2px 6px 2px rgb(0,0,0,0.3);
     margin:5px 5px 5px 0px;
