@@ -42,8 +42,21 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         if (!(0, validateField_1.validateFullDob)(new Date(dateOfBirth))) {
             throw new Error('Invalid date of birth');
         }
+        const checkUser = yield user_1.User.findAll({
+            where: {
+                email
+            }
+        });
+        // check if user has registered (by the same email address)
+        if (Object.keys(checkUser).length > 0)
+            throw new Error('User has already registered');
         const record = yield user_1.User.create(Object.assign(Object.assign({}, req.body), { dateOfBirth: new Date(dateOfBirth) }));
-        res.send({ error: null, data: record });
+        if (Object.keys(record).length > 0) {
+            res.send({ error: null, data: 'User successfully created' });
+        }
+        else {
+            throw new Error('Something went wrong.');
+        }
     }
     catch (e) {
         if (e instanceof Error) {
