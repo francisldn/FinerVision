@@ -2,7 +2,7 @@ export const validateName = (name: string) => {
     if (!name || typeof name !== 'string') {
         return false;
     }
-    if (/<[a-z][\s\S]*>/i.test(name)) {
+    if (/<[a-z][\s\S]*>/gi.test(name)) {
         return false;
     }
 
@@ -13,7 +13,11 @@ export const validateEmail = (email: string) => {
     if (!email || typeof email !== 'string' || !email.includes('@')) {
         return false;
     }
-    if (/<[a-z][\s\S]*>/i.test(email)) {
+    if (/<[a-z][\s\S]*>/gi.test(email)) {
+        return false;
+    }
+    console.log(/^[^\s@]+@[^\s@]+\.[^\s@]+$/gi.test(email));
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/gi.test(email) === false) {
         return false;
     }
     return true;
@@ -22,7 +26,7 @@ export const validateEmail = (email: string) => {
 export const validatePhoneNumber = (phoneNumber: number) => {
     // if not a number return false
     if (!Number(phoneNumber)) return false;
-    if (/<[a-z][\s\S]*>/i.test(phoneNumber.toString())) {
+    if (/<[a-z][\s\S]*>/gi.test(phoneNumber.toString())) {
         return false;
     }
     return true;
@@ -52,7 +56,7 @@ export const validateDob = (day: number, month: number, year: number) => {
 
 export const validateComment = (textAreaInput: string) => {
     if (typeof textAreaInput !== 'string') return false;
-    if (/<[a-z][\s\S]*>/i.test(textAreaInput)) {
+    if (/<[a-z][\s\S]*>/gi.test(textAreaInput)) {
         return false;
     }
     return true;

@@ -12,7 +12,7 @@ const user_1 = require("./models/user");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
-    origin: process.env.CLIENT_PORT,
+    origin: process.env.CLIENT_URL,
 }));
 app.use(router_1.default);
 user_1.User.sync().then(() => {

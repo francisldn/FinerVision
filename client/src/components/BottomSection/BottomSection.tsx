@@ -53,6 +53,7 @@ export default function BottomSection({toggle, setToggleCurrent, setToggleNext, 
         toast.error('Invalid surname');
         return;
     }
+    console.log(validateEmail(email as string))
     if(!validateEmail(email as string)) {
         toast.error('Invalid email address');
         return;

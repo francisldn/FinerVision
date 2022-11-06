@@ -16,6 +16,9 @@ export const validateEmail = (email:string) => {
     if(/<[a-z][\s\S]*>/i.test(email)) {
         return false
     }
+    if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/gi.test(email)===false) {
+        return false
+    }
     return true;
 }
 
