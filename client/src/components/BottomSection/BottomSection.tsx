@@ -8,17 +8,23 @@ import { createUser } from '../../utils/apiService';
 import toast, {Toaster} from 'react-hot-toast';
 
 interface BottomSectionProps {
-    toggle: boolean,
-    setToggleCurrent:React.Dispatch<React.SetStateAction<boolean>>,
-    setToggleNext:() => void;
+    toggle: {
+        toggleTop: boolean,
+        toggleMid: boolean,
+        toggleBottom: boolean,
+        setToggleTop:React.Dispatch<React.SetStateAction<boolean>>,
+        setToggleMid: React.Dispatch<React.SetStateAction<boolean>>,
+        setToggleBottom: React.Dispatch<React.SetStateAction<boolean>>,
+      },
     formFields: {
         userDetails: (string|number)[],
         setUserDetails: (React.Dispatch<React.SetStateAction<string>> | React.Dispatch<React.SetStateAction<string | number>>)[]
     }
 }
 
-export default function BottomSection({toggle, setToggleCurrent, setToggleNext, formFields}: BottomSectionProps) {
+export default function BottomSection({toggle,formFields}: BottomSectionProps) {
   const {userDetails, setUserDetails} = formFields;
+  const {toggleTop, toggleMid, toggleBottom, setToggleTop, setToggleMid, setToggleBottom} = toggle;
   const [firstName, surname, email,phoneNumber, gender,dob,comment, day, month, year] = userDetails;
   const [setFirstName, setSurname, setEmail, setPhoneNumber, setGender, setDay, setMonth, setYear, setComment, setDob] = setUserDetails
   
@@ -53,7 +59,7 @@ export default function BottomSection({toggle, setToggleCurrent, setToggleNext, 
         toast.error('Invalid surname');
         return;
     }
-    console.log(validateEmail(email as string))
+
     if(!validateEmail(email as string)) {
         toast.error('Invalid email address');
         return;
@@ -93,13 +99,13 @@ export default function BottomSection({toggle, setToggleCurrent, setToggleNext, 
   }
 
   const openForm = () => {
-    setToggleCurrent(!toggle)
+    setToggleBottom(!toggleBottom)
   }
 
   return (
     <FormSection headerText={"Step 3: Final comments"} openForm={openForm}>
         <Toaster />
-        {toggle && (
+        {toggleBottom && (
         <Form onSubmit={(e)=> handleSubmit(e)}>
             <FormField 
                 label={"Comments"} 

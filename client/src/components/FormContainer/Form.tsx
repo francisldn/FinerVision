@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import {FormContainer} from './Form.styles'
 import TopSection from '../TopSection/TopSection'
 import MiddleSection from '../MiddleSection/MiddleSection';
@@ -48,11 +48,41 @@ export default function Form() {
     setUserDetails: [setFirstName, setSurname, setEmail, setPhoneNumber, setGender, setDay, setMonth, setYear, setComment, setDob]
   }
 
+  const toggle = {
+    toggleTop,
+    toggleMid,
+    toggleBottom,
+    setToggleTop,
+    setToggleMid,
+    setToggleBottom
+  }
+
+  useEffect(() => {
+    if(toggleTop) {
+      setToggleMid(false)
+      setToggleBottom(false)
+    }
+  },[toggleTop])
+
+  useEffect(() => {
+    if(toggleMid) {
+      setToggleTop(false)
+      setToggleBottom(false)
+    }
+  },[toggleMid])
+
+  useEffect(() => {
+    if(toggleBottom) {
+      setToggleTop(false)
+      setToggleMid(false)
+    }
+  },[toggleBottom])
+
   return (
     <FormContainer>
-      <TopSection toggle={toggleTop} setToggleCurrent={setToggleTop} setToggleNext={setToggleMid} formFields={topFormFields}/>
-      <MiddleSection toggle={toggleMid} setToggleCurrent={setToggleMid} setToggleNext={setToggleBottom} formFields={midFormFields}/>
-      <BottomSection toggle={toggleBottom} setToggleCurrent={setToggleBottom} setToggleNext={()=> {}} formFields={bottomFormFields}/>
+      <TopSection toggle={toggle} formFields={topFormFields}/>
+      <MiddleSection toggle={toggle} formFields={midFormFields}/>
+      <BottomSection toggle={toggle}formFields={bottomFormFields}/>
     </FormContainer>
   )
 }

@@ -9,9 +9,14 @@ import { DobField } from '../DobInput/DobField';
 import PhoneNumberField from '../PhoneNumberField/PhoneNumberField';
 
 interface MidSectionProps {
-  toggle: boolean,
-  setToggleCurrent:React.Dispatch<React.SetStateAction<boolean>>,
-  setToggleNext:React.Dispatch<React.SetStateAction<boolean>>
+  toggle: {
+    toggleTop: boolean,
+    toggleMid: boolean,
+    toggleBottom: boolean,
+    setToggleTop:React.Dispatch<React.SetStateAction<boolean>>,
+    setToggleMid: React.Dispatch<React.SetStateAction<boolean>>,
+    setToggleBottom: React.Dispatch<React.SetStateAction<boolean>>,
+  },
   formFields: {
     phoneNumber: string | number;
     setPhoneNumber:React.Dispatch<React.SetStateAction<string |number>>,
@@ -28,9 +33,9 @@ interface MidSectionProps {
   }
 }
 
-export default function MiddleSection({toggle, setToggleCurrent, setToggleNext, formFields}: MidSectionProps) {
+export default function MiddleSection({toggle, formFields}: MidSectionProps) {
   const {phoneNumber, gender, setPhoneNumber, setDob, setGender, day, setDay, month, setMonth, year, setYear} = formFields;
-
+  const {toggleTop, toggleMid, toggleBottom, setToggleTop, setToggleMid, setToggleBottom} = toggle
   const handleSubmit= (e:React.FormEvent) => {
     e.preventDefault();
 
@@ -46,12 +51,17 @@ export default function MiddleSection({toggle, setToggleCurrent, setToggleNext, 
       setDob(newDob.toString())
     }
 
-    setToggleCurrent(false)
-    setToggleNext(true)
+    setToggleMid(false)
+    setToggleBottom(true)
+    setToggleTop(false)
   }
 
   const openForm = () => {
-    setToggleCurrent(!toggle)
+    setToggleMid(!toggleMid) 
+    if(toggleMid) {
+      setToggleTop(false)
+      setToggleBottom(false)
+    }
   }
 
   const dobFormFields = {
@@ -66,7 +76,7 @@ export default function MiddleSection({toggle, setToggleCurrent, setToggleNext, 
   return (
     <FormSection headerText={"Step 2: More comments"} openForm={openForm}>
       <Toaster />
-      {toggle && 
+      {toggleMid && 
       (<>
         <Form onSubmit={handleSubmit}>
           <Grid>
@@ -98,7 +108,6 @@ export default function MiddleSection({toggle, setToggleCurrent, setToggleNext, 
           </Grid>
           <NavigateButton />
         </Form>
-        
       </>)
       }
     </FormSection>

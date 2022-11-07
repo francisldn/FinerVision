@@ -7,9 +7,14 @@ import {validateName, validateEmail} from '../../utils/validateField'
 import toast, {Toaster} from 'react-hot-toast';
 
 export interface SectionProps {
-  toggle: boolean,
-  setToggleCurrent:React.Dispatch<React.SetStateAction<boolean>>,
-  setToggleNext:React.Dispatch<React.SetStateAction<boolean>>
+  toggle: {
+    toggleTop: boolean,
+    toggleMid: boolean,
+    toggleBottom: boolean,
+    setToggleTop:React.Dispatch<React.SetStateAction<boolean>>,
+    setToggleMid: React.Dispatch<React.SetStateAction<boolean>>,
+    setToggleBottom: React.Dispatch<React.SetStateAction<boolean>>,
+  },
   formFields: {
     firstName: string;
     surname: string;
@@ -20,9 +25,9 @@ export interface SectionProps {
   }
 }
 
-export default function TopSection({toggle, setToggleCurrent, setToggleNext, formFields}: SectionProps) {
+export default function TopSection({toggle, formFields}: SectionProps) {
   const {firstName, surname, email, setFirstName, setSurname, setEmail} = formFields;
-  
+  const {toggleTop, toggleMid, toggleBottom, setToggleTop, setToggleMid, setToggleBottom} = toggle;
   const handleSubmit= (e:React.FormEvent) => {
     e.preventDefault()
 
@@ -40,18 +45,23 @@ export default function TopSection({toggle, setToggleCurrent, setToggleNext, for
       toast.error('Invalid email address')
       return
     }
-    setToggleCurrent(false)
-    setToggleNext(true)
+    setToggleTop(false)
+    setToggleMid(true)
+    setToggleBottom(false)
   }
 
   const openForm = () => {
-    setToggleCurrent(!toggle)
+    setToggleTop(!toggleTop)
+    if(toggleTop) {
+      setToggleMid(false)
+      setToggleBottom(false)
+    }
   }
 
   return (
     <FormSection headerText={"Step 1: Your details"} openForm={openForm}>
       <Toaster />
-      {toggle && 
+      {toggleTop && 
       (
         <Form onSubmit={(e) => handleSubmit(e)}>
           <Grid>
